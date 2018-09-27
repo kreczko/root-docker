@@ -10,7 +10,6 @@ env:
     - ROOT_VERSION=6.14 VARIANT=debian PYTHON_VERSION=2.7
     - ROOT_VERSION=6.14 VARIANT=debian PYTHON_VERSION=3.6
 
-
 before_script:
   - cd "${VARIANT}/python_${PYTHON_VERSION}"
   - image="rootproject/root-${VARIANT}:${ROOT_VERSION}-python${PYTHON_VERSION}"
