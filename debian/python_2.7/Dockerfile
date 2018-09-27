@@ -65,11 +65,12 @@ ARG ROOT_VERSION=6-14-04
 RUN cd /tmp \
  && git clone --branch v${ROOT_VERSION} https://github.com/root-project/root /usr/src/root \
  && cmake /usr/src/root \
- 	-Dall=ON \
+ 	-Dminimal=ON \
  	-Dcxx14=ON \
  	-Dfail-on-missing=ON \
  	-Dgnuinstall=ON \
  	-Drpath=ON \
+  -Dpython=ON \
  	-Dbuiltin_afterimage=OFF \
  	-Dbuiltin_ftgl=OFF \
  	-Dbuiltin_gl2ps=OFF \
