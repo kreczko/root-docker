@@ -4,12 +4,12 @@ RUN apt-get update \
  && ln -sf /usr/share/zoneinfo/UTC /etc/localtime \
  && apt-get install -y --no-install-recommends \
      cmake \
-     davix-dev \
-     dcap-dev \
+     # davix-dev \
+     # dcap-dev \
      fonts-freefont-ttf \
      g++ \
      gcc \
-     gfal2 \
+     # gfal2 \
      gfortran \
      git \
      libafterimage-dev \
@@ -18,7 +18,7 @@ RUN apt-get update \
      libfftw3-dev \
      libfreetype6-dev \
      libftgl-dev \
-     libgfal2-dev \
+     # libgfal2-dev \
      libgif-dev \
      libgl2ps-dev \
      libglew-dev \
@@ -74,11 +74,11 @@ RUN cd /tmp \
  	-Dbuiltin_ftgl=OFF \
  	-Dbuiltin_gl2ps=OFF \
  	-Dbuiltin_glew=OFF \
- 	-Dbuiltin_unuran=ON \
- 	-Dbuiltin_vc=ON \
- 	-Dbuiltin_vdt=ON \
- 	-Dbuiltin_veccore=ON \
- 	-Dbuiltin_xrootd=ON \
+ 	-Dbuiltin_unuran=OFF \
+ 	-Dbuiltin_vc=OFF \
+ 	-Dbuiltin_vdt=OFF \
+ 	-Dbuiltin_veccore=OFF \
+ 	-Dbuiltin_xrootd=OFF \
  	-Darrow=OFF \
  	-Dcastor=OFF \
  	-Dchirp=OFF \
