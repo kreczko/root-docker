@@ -1,63 +1,13 @@
 FROM python:2.7-slim-stretch
 
-RUN apt-get update \
- && ln -sf /usr/share/zoneinfo/UTC /etc/localtime \
- && apt-get install -y --no-install-recommends \
-     cmake \
-     # davix-dev \
-     # dcap-dev \
-     fonts-freefont-ttf \
-     g++ \
-     gcc \
-     # gfal2 \
-     gfortran \
-     git \
-     libafterimage-dev \
-     libavahi-compat-libdnssd-dev \
-     libcfitsio-dev \
-     libfftw3-dev \
-     libfreetype6-dev \
-     libftgl-dev \
-     # libgfal2-dev \
-     libgif-dev \
-     libgl2ps-dev \
-     libglew-dev \
-     libglu-dev \
-     libgraphviz-dev \
-     libgsl-dev \
-     libjemalloc-dev \
-     libjpeg-dev \
-     libkrb5-dev \
-     libldap2-dev \
-     liblz4-dev \
-     liblzma-dev \
-     default-libmysqlclient-dev \
-     libpcre++-dev \
-     libpng-dev \
-     libpq-dev \
-     # libpythia8-dev \
-     libqt4-dev \
-     libsqlite3-dev \
-     libssl-dev \
-     libtbb-dev \
-     libtiff-dev \
-     libx11-dev \
-     libxext-dev \
-     libxft-dev \
-     libxml2-dev \
-     libxpm-dev \
-     libz-dev \
-     locales \
-     lsb-release \
-     make \
-     r-base \
-     r-cran-rcpp \
-     r-cran-rinside \
-     srm-ifce-dev \
-     unixodbc-dev \
- && localedef -i en_US -f UTF-8 en_US.UTF-8 \
- && rm -rf /var/lib/apt/lists/*
 
+COPY packages packages
+
+RUN apt-get update -qq \
+ && ln -sf /usr/share/zoneinfo/UTC /etc/localtime \
+ && apt-get -y install --no-install-recommends $(cat packages) \
+ && localedef -i en_US -f UTF-8 en_US.UTF-8 \
+ && rm -rf /packages /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir numpy
 
