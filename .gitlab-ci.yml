@@ -1,0 +1,10 @@
+
+build-debian-python2.7:
+  stage: build
+  tags:
+    - docker-image-build
+  script: "echo Done" # unused but this line is required by GitLab CI
+  variables:
+    TO: rootproject/root-debian:6-14-00-python2.7 # put name of branch in image
+    FROM: python:2.7-slim-stretch # override Dockerfile's FROM line to match host docker version
+    DOCKER_FILE: debian/Dockerfile
