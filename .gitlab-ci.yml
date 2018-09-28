@@ -1,35 +1,36 @@
-
 .build: &build_def
   stage: build
   tags:
     - docker-image-build
   script: "echo Done" # unused but this line is required by GitLab CI
-  variables:
-    TO: kreczko/root-${VARIANT}:${ROOT_VERSION}-python${PYTHON_VERSION}
-    DOCKER_FILE: ${VARIANT}/Dockerfile
-    BUILD_ARG: ROOT_VERSION=${ROOT_VERSION}
-
+  variables: &default_vars
+    TO: "kreczko/root-${VARIANT}:${ROOT_VERSION}-python${PYTHON_VERSION}"
+    DOCKER_FILE: "${VARIANT}/Dockerfile"
+    BUILD_ARG: "ROOT_VERSION=${ROOT_VERSION}"
 
 build-debian-python2.7:
   variables:
     VARIANT: debian
     ROOT_VERSION: 6-14-00
-    PYTHON_VERSION: 2.7
-    FROM: python:${PYTHON_VERSION}-slim-stretch
+    PYTHON_VERSION: "2.7"
+    FROM: "python:${PYTHON_VERSION}-slim-stretch"
+    <<: *default_vars
   <<: *build_def
 
 build-debian-python3.6:
   variables:
     VARIANT: debian
     ROOT_VERSION: 6-14-00
-    PYTHON_VERSION: 3.6
+    PYTHON_VERSION: "3.6"
     FROM: python:${PYTHON_VERSION}-slim-stretch
+    <<: *default_vars
   <<: *build_def
 
 build-debian-python3.7:
   variables:
     VARIANT: debian
     ROOT_VERSION: 6-14-00
-    PYTHON_VERSION: 3.7
+    PYTHON_VERSION: "3.7"
     FROM: python:${PYTHON_VERSION}-slim-stretch
+    <<: *default_vars
   <<: *build_def
