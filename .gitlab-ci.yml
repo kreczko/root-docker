@@ -1,10 +1,35 @@
 
-build-debian-python2.7:
+.build: &build_def
   stage: build
   tags:
     - docker-image-build
   script: "echo Done" # unused but this line is required by GitLab CI
   variables:
-    TO: rootproject/root-debian:6-14-00-python2.7 # put name of branch in image
-    FROM: python:2.7-slim-stretch # override Dockerfile's FROM line to match host docker version
-    DOCKER_FILE: debian/Dockerfile
+    TO: kreczko/root-${VARIANT}:${ROOT_VERSION}-python${PYTHON_VERSION}
+    DOCKER_FILE: ${VARIANT}/Dockerfile
+    BUILD_ARG: ROOT_VERSION=${ROOT_VERSION}
+
+
+build-debian-python2.7:
+  variables:
+    VARIANT: debian
+    ROOT_VERSION: 6-14-00
+    PYTHON_VERSION: 2.7
+    FROM: python:${PYTHON_VERSION}-slim-stretch
+   <<: *build_def
+
+build-debian-python3.6:
+  variables:
+    VARIANT: debian
+    ROOT_VERSION: 6-14-00
+    PYTHON_VERSION: 3.6
+    FROM: python:${PYTHON_VERSION}-slim-stretch
+   <<: *build_def
+
+build-debian-python3.7:
+  variables:
+    VARIANT: debian
+    ROOT_VERSION: 6-14-00
+    PYTHON_VERSION: 3.7
+    FROM: python:${PYTHON_VERSION}-slim-stretch
+   <<: *build_def
