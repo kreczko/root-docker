@@ -13,6 +13,7 @@ RUN pip install --no-cache-dir numpy
 
 ARG ROOT_VERSION=6-14-04
 RUN cd /tmp \
+ && echo "Compiling ROOT version ${ROOT_VERSION}" \
  && git clone --branch v${ROOT_VERSION} https://github.com/root-project/root /usr/src/root \
  && cmake /usr/src/root \
  	-Dminimal=ON \
@@ -47,5 +48,5 @@ RUN cd /tmp \
  && cmake --build . --target install \
  && rm -rf /tmp/* /usr/src/root
 
-ENV PYTHONPATH /usr/local/lib
+ENV PYTHONPATH /usr/local/lib:/usr/local/lib/root
 CMD root -b
