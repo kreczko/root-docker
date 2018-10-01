@@ -22,11 +22,10 @@ libkrb5-dev
 libldap2-dev
 liblz4-dev
 liblzma-dev
-libmysqlclient-dev
+default-libmysqlclient-dev
 libpcre++-dev
 libpng-dev
 libpq-dev
-libpythia8-dev
 libqt4-dev
 libsqlite3-dev
 libssl-dev
@@ -37,6 +36,7 @@ libxext-dev
 libxft-dev
 libxml2-dev
 libxpm-dev
+libyaml-dev
 libz-dev
 locales
 lsb-release
